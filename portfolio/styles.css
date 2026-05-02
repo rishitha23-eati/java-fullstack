@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color:blueviolet;
+    background-color:darkblue;
     color: #ffffff;
 }
 
@@ -41,14 +41,6 @@ header {
     z-index: 100;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #4da6ff;
-    border-radius: 50%;
-    margin: 0;
-    padding: 0;
-}
 
 nav a {
     margin-left: 30px;
@@ -108,6 +100,8 @@ nav a:hover::after {
 .arrow {
     display: block;
     animation: scrollMove 1.5s infinite;
+    justify-content: center;
+    text-align: center;
 }
 
 .arrow:nth-child(2) {
@@ -116,6 +110,9 @@ nav a:hover::after {
 
 .arrow:nth-child(3) {
     animation-delay: 0.4s;
+}
+.scroll-btn:hover{
+    transform: sca;
 }
 
 @keyframes scrollMove {
