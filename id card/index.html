@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BITS Vizag - Student ID Card</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #c8d6e5;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        /* Lanyard string */
+        .lanyard {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .string {
+            width: 3px;
+            height: 50px;
+            background: linear-gradient(to bottom, #888, #aaa);
+        }
+
+        .clip {
+            width: 14px;
+            height: 18px;
+            background: linear-gradient(135deg, #aaa, #ddd, #aaa);
+            border-radius: 3px 3px 0 0;
+            border: 1px solid #999;
+            margin-bottom: -1px;
+        }
+
+        /* Card wrapper with side label */
+        .card-wrapper {
+            display: flex;
+            align-items: stretch;
+            background: rgba(240, 245, 255, 0.92);
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+            overflow: hidden;
+            width: 320px;
+            min-height: 480px;
+            border: 1.5px solid #bbb;
+        }
+
+        /* Side label */
+        .side-label {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 16px 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            flex-shrink: 0;
+        }
+
+        /* Main card content */
+        .card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 14px 14px 16px 10px;
+        }
+
+        /* Header */
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #f5e8c0 30%, #c8a84b 70%, #8b6914 100%);
+            border: 2px solid #8b6914;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .brand-block {
+            flex: 1;
+            text-align: center;
+        }
+
+        .bits-logo {
+            display: flex;
+            justify-content: center;
+            gap: 2px;
+            margin-bottom: 2px;
+        }
+
+        .bits-logo span {
+            font-size: 22px;
+            font-weight: 900;
+            border-radius: 4px;
+            width: 26px;
+            height: 26px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .b-letter {
+            background: #e63946;
+        }
+
+        .i-letter {
+            background: #f4a261;
+            color: #fff;
+        }
+
+        .t-letter {
+            background: #2a9d8f;
+        }
+
+        .s-letter {
+            background: #457b9d;
+        }
+
+        .vizag-text {
+            font-size: 15px;
+            font-weight: 800;
+            color: #2c7a3f;
+            letter-spacing: 1px;
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+
+        /* Diamond decorations */
+        .diamonds {
+            display: flex;
+            gap: 4px;
+            justify-content: flex-end;
+            align-self: flex-start;
+            margin-top: 2px;
+        }
+
+        .diamond {
+            width: 16px;
+            height: 16px;
+            border: 2px solid;
+            transform: rotate(45deg);
+            border-radius: 2px;
+        }
+
+        .d1 {
+            border-color: #e63946;
+        }
+
+        .d2 {
+            border-color: #2a9d8f;
+        }
+
+        .d3 {
+            border-color: #457b9d;
+        }
+
+        /* College full name */
+        .college-name {
+            text-align: center;
+            font-size: 9.5px;
+            font-weight: 700;
+            color: #c1121f;
+            letter-spacing: 0.3px;
+            line-height: 1.3;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+        }
+
+        .autonomous-badge {
+            text-align: center;
+            font-size: 8.5px;
+            font-weight: 700;
+            color: #1a1a1a;
+            border: 1.5px solid #333;
+            display: inline-block;
+            padding: 1px 8px;
+            margin: 0 auto 4px;
+            letter-spacing: 1px;
+            background: transparent;
+        }
+
+        .auto-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3px;
+        }
+
+        .affiliation-text {
+            text-align: center;
+            font-size: 7.5px;
+            color: #1a1a1a;
+            line-height: 1.5;
+            margin-bottom: 2px;
+            font-weight: 600;
+        }
+
+        .italic-text {
+            font-style: italic;
+            color: #1a1a1a;
+            font-size: 7.5px;
+            text-align: center;
+            margin-bottom: 1px;
+            display: block;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #999, transparent);
+            margin: 6px 0;
+        }
+
+        /* Photo */
+        .photo-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .photo-frame {
+            width: 100px;
+            height: 115px;
+            border: 2px solid #aaa;
+            background: linear-gradient(135deg, #b8d4f0 0%, #c8dde8 40%, #e8c4b0 70%, #d4a898 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: auto;
+        }
+
+        /* Student info */
+        .info-section {
+            padding: 0 4px;
+        }
+
+        .info-row {
+            display: flex;
+            font-size: 11px;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .info-label {
+            min-width: 68px;
+            font-weight: 700;
+        }
+
+        .info-value {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .name-row {
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        /* Principal signature */
+        .signature-block {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            padding-right: 6px;
+        }
+
+        .signature-line {
+            font-family: 'Dancing Script', cursive;
+            font-size: 18px;
+            color: #1a6b3c;
+            letter-spacing: 1px;
+            line-height: 1;
+            font-style: italic;
+            transform: rotate(-3deg);
+            margin-bottom: 2px;
+        }
+
+        .principal-text {
+            font-size: 9px;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+    </style>
+</head>
+
+<body>
+
+    <div class="lanyard">
+        <div class="clip"></div>
+        <div class="string"></div>
+
+        <div class="card-wrapper">
+            <!-- Side label -->
+            <div class="side-label">College Code : BABA</div>
+
+            <!-- Main card body -->
+            <div class="card-body">
+
+                <!-- Header row: logo + brand + diamonds -->
+                <div class="card-header">
+                    <div class="logo">🎓</div>
+                    <div class="brand-block">
+                        <div class="bits-logo">
+                            <span class="b-letter">B</span>
+                            <span class="i-letter">I</span>
+                            <span class="t-letter">T</span>
+                            <span class="s-letter">S</span>
+                        </div>
+                        <div class="vizag-text">VIZAG</div>
+                    </div>
+                    <div class="diamonds">
+                        <div class="diamond d1"></div>
+                        <div class="diamond d2"></div>
+                        <div class="diamond d3"></div>
+                    </div>
+                </div>
+
+                <!-- College full name -->
+                <div class="college-name">Baba Institute of Technology and Sciences</div>
+
+                <!-- Autonomous badge -->
+                <div class="auto-wrapper">
+                    <div class="autonomous-badge">AUTONOMOUS</div>
+                </div>
+
+                <!-- Affiliations -->
+                <div class="affiliation-text">
+                    Approved by AICTE, New Delhi &Affiliated to JNTUGV<br>
+                    <span class="italic-text">"Accredited by NAAC with 'A' Grade"</span>
+                    An ISO 9001:2015 Certified Institution
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Photo -->
+                <div class="photo-wrapper">
+                    <div class="photo-frame">
+                        <img src="images/photo.jpeg" width="100" height="115" alt="my profile">
+                    </div>
+                </div>
+
+                <!-- Student Details -->
+                <div class="info-section">
+                    <div class="info-row name-row">
+                        <span class="info-label">Name :</span>
+                        <span class="info-value">EATI RISHITHA</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Regd. No :</span>
+                        <span class="info-value">23NR1A0551</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Course :</span>
+                        <span class="info-value">B.Tech</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Branch :</span>
+                        <span class="info-value">CSE</span>
+                    </div>
+                </div>
+
+                <!-- Principal Signature -->
+                <div class="signature-block">
+                    <div class="signature-line">Principal</div>
+                    <div class="principal-text">PRINCIPAL</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
